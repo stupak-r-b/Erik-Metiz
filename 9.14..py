@@ -1,7 +1,7 @@
 from random import randint
 """It's a lottery game."""
 
-some_data = [3, 4, 6, 34, 65, 9, 76, 58, 87, 23, "d", "g", "e", "к", "c"]
+some_data = [3, 4, 6, 34, 65, 9, 76, 58, 87, 23, "d", "g", "e", "k", "c"]
 
 print("Выигрышный билет содержит комбинацию:")
 for i in range(4):
