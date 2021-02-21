@@ -1,20 +1,31 @@
 import json
 
-def get_the_favorite_number():
-    """This program takes users favorite number and save it in the json file"""
-    favorite_number = input("Please enter your favorite number: ")
-    file = "users_favorite_number.json"
-    with open(file, 'w') as f:
-        json.dump(favorite_number, f)
-
-def users_favorite_number():
-    """This program takes the number from json file and than greet the user."""
-    file = "users_favorite_number.json"
+def get_stored_username():
+    """Получает хранимое имя пользователя, если оно существует."""
+    filename = "username.json"
     try:
-        with open(file, 'r') as f:
-            users_favor_num = json.load(f)
-            print(f"I know your favorite number. Your favorite number is {users_favor_num}")
-    except: # if json file is not found we create new one
-        get_the_favorite_number()
+        with open(filename) as f:
+            username = json.load(f)
+    except FileNotFoundError:
+        return None
+    else:
+        return username
 
-users_favorite_number()
+def get_new_username():
+    """Запрашивает новое имя пользователя."""
+    username = input("What is your name?: ")
+    filename = 'username.json'
+    with open(filename, 'w') as f:
+        json.dump(username, f)
+    return username
+
+def greet_user():
+    """Приветствует пользователя по имени."""
+    username = get_stored_username()
+    if username:
+        print(f"Welcome back, {username}!")
+    else:
+        username = get_new_username()
+        print(f"We'll remember you when you come back, {username}!")
+
+greet_user()
